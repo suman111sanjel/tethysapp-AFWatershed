@@ -1,0 +1,52 @@
+INSERT INTO public.watershed_layergroupone (id, "order", "htmlText", "htmlId", is_group_layer) VALUES (1, 1, 'Admin', 'admin', true);
+INSERT INTO public.watershed_layergroupone (id, "order", "htmlText", "htmlId", is_group_layer) VALUES (2, 2, 'Gelogical', 'gelogical', true);
+INSERT INTO public.watershed_layergroupone (id, "order", "htmlText", "htmlId", is_group_layer) VALUES (3, 3, 'Hydrological', 'hydrological', true);
+INSERT INTO public.watershed_layergroupone (id, "order", "htmlText", "htmlId", is_group_layer) VALUES (6, 6, 'Population', 'Population', true);
+INSERT INTO public.watershed_layergroupone (id, "order", "htmlText", "htmlId", is_group_layer) VALUES (5, 5, 'Topographical', 'topographical', true);
+INSERT INTO public.watershed_layergroupone (id, "order", "htmlText", "htmlId", is_group_layer) VALUES (4, 4, 'Soil Parameters', 'soil_parameters', true);
+INSERT INTO public.watershed_layergroupone (id, "order", "htmlText", "htmlId", is_group_layer) VALUES (7, 7, 'LandCover', 'LandCover', true);
+INSERT INTO public.watershed_layergroupone(	id, "order", "htmlText", "htmlId", is_group_layer)	VALUES (8, 8, 'Climate', 'climate', True);
+
+
+
+
+INSERT INTO public.watershed_layergrouptwo(
+	id, "order", "htmlText", "htmlId", "isLayer", "LayerGroupOneId_id", "zIndex", "defaultLayerVisibility", layernamegeoserver, data_type, "wmsTileType", mask, server_type, style, wms_url, legend, color_scale_range, annual_monthly, opacity_slider)
+	VALUES (32, 1, 'Annual LST MODIS 2009-2018', 'Annual_LST_MODIS_2009_2018', TRUE , 8, 20, TRUE, 'Annual_LST_MODIS', 'raster', '', TRUE, 'thredds', 'boxfill/rainbow','http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_LST_MODIS_2009_2018.ncml', 'http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_LST_MODIS_2009_2018.ncml?REQUEST=GetLegendGraphic&LAYER=Annual_LST_MODIS&PALETTE=rainbow', '-5.73,42.41', 'annual', TRUE);
+
+
+INSERT INTO public.watershed_layergrouptwo(
+	id, "order", "htmlText", "htmlId", "isLayer", "LayerGroupOneId_id", "zIndex", "defaultLayerVisibility", layernamegeoserver, data_type, "wmsTileType", mask, server_type, style, wms_url, legend, color_scale_range, annual_monthly, opacity_slider)
+	VALUES (33, 2, 'Annual ET MODIS 2009-2018', 'Annual_ET_MODIS_2009_2018', TRUE , 8, 19, TRUE, 'Annual_ET_MODIS', 'raster', '', TRUE, 'thredds', 'boxfill/rainbow','http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_ET_MODIS_2009_2018.ncml', 'http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_ET_MODIS_2009_2018.ncml?REQUEST=GetLegendGraphic&LAYER=Annual_ET_MODIS&PALETTE=rainbow', '-5.73,42.41', 'annual', TRUE);
+
+
+
+INSERT INTO public.watershed_layergrouptwo(
+	id, "order", "htmlText", "htmlId", "isLayer", "LayerGroupOneId_id", "zIndex", "defaultLayerVisibility", layernamegeoserver, data_type, "wmsTileType", mask, server_type, style, wms_url, legend, color_scale_range, annual_monthly, opacity_slider)
+	VALUES (34, 3, 'Annual Percipitation chirips 2009-2018', 'Annual_Percipitation_chirips_2009_2018', TRUE , 8, 18, TRUE, 'Annual_Perci', 'raster', '', TRUE, 'thredds', 'boxfill/rainbow','http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_Percipitation_chirips_2009_2018.ncml', 'http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_Percipitation_chirips_2009_2018.ncml?REQUEST=GetLegendGraphic&LAYER=Annual_Perci&PALETTE=rainbow', '28.74,1340', 'annual', TRUE);
+
+
+
+INSERT INTO public.watershed_layergrouptwo(
+	id, "order", "htmlText", "htmlId", "isLayer", "LayerGroupOneId_id", "zIndex", "defaultLayerVisibility", layernamegeoserver, data_type, "wmsTileType", mask, server_type, style, wms_url, legend, color_scale_range, annual_monthly, opacity_slider)
+	VALUES (35, 4, 'Annual Snow Cover MODIS 2009-2018', 'Annual_Snow_Cover_MODIS_2009_2018', TRUE , 8, 17, TRUE, 'Annual_Snow_Cover', 'raster', '', TRUE, 'thredds', 'boxfill/rainbow','http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_Snow_Cover_MODIS_2009_2018.ncml', 'http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Annual_Snow_Cover_MODIS_2009_2018.ncml?REQUEST=GetLegendGraphic&LAYER=Annual_Snow_Cover&PALETTE=rainbow', '1,6', 'annual', TRUE);
+
+
+
+
+INSERT INTO public.watershed_layergrouptwo(
+	id, "order", "htmlText", "htmlId", "isLayer", "LayerGroupOneId_id", "zIndex", "defaultLayerVisibility", layernamegeoserver, data_type, "wmsTileType", mask, server_type, style, wms_url, legend, color_scale_range, annual_monthly, opacity_slider)
+	VALUES (36, 5, 'Monthly LST MODIS 2009-2018', 'Monthly_LST_MODIS_2009_2018', TRUE , 8, 16, TRUE, 'Monthly_LST_MODIS', 'raster', '', TRUE, 'thredds', 'boxfill/rainbow','http://192.168.11.242:8082/thredds/catalog/watershed/climate_parameters/Monthly_LST_MODIS_2009_2018/catalog.xml', 'http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Monthly_LST_MODIS_2009_2018/2018.ncml?REQUEST=GetLegendGraphic&LAYER=Monthly_LST_MODIS&PALETTE=rainbow', '-17.09,35.79', 'monthly', TRUE);
+
+
+INSERT INTO public.watershed_layergrouptwo(
+	id, "order", "htmlText", "htmlId", "isLayer", "LayerGroupOneId_id", "zIndex", "defaultLayerVisibility", layernamegeoserver, data_type, "wmsTileType", mask, server_type, style, wms_url, legend, color_scale_range, annual_monthly, opacity_slider)
+	VALUES (37, 6, 'Monthly Precipitation CHIRIPS 2009-2018', 'Monthly_Precipitation_CHIRIPS_2009_2018', TRUE , 8, 15, TRUE, 'Monthly_Preci', 'raster', '', TRUE, 'thredds', 'boxfill/rainbow','http://192.168.11.242:8082/thredds/catalog/watershed/climate_parameters/Monthly_Precipitation_CHIRIPS_2009_2018/catalog.xml', 'http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Monthly_Precipitation_CHIRIPS_2009_2018/2018.ncml?REQUEST=GetLegendGraphic&LAYER=Monthly_Preci&PALETTE=rainbow', '1,130', 'monthly', TRUE);
+
+
+INSERT INTO public.watershed_layergrouptwo(
+	id, "order", "htmlText", "htmlId", "isLayer", "LayerGroupOneId_id", "zIndex", "defaultLayerVisibility", layernamegeoserver, data_type, "wmsTileType", mask, server_type, style, wms_url, legend, color_scale_range, annual_monthly, opacity_slider)
+	VALUES (38, 7, 'Monthly Snow Cover MODIS 2009-2018', 'Monthly_Snow_Cover_MODIS_2009_2018', TRUE , 8, 14, TRUE, 'Monthly_Snow_Cover', 'raster', '', TRUE, 'thredds', 'boxfill/rainbow','http://192.168.11.242:8082/thredds/catalog/watershed/climate_parameters/Monthly_Snow_Cover_MODIS_2009_2018/catalog.xml', 'http://192.168.11.242:8082/thredds/wms/watershed/climate_parameters/Monthly_Snow_Cover_MODIS_2009_2018/2018.ncml?REQUEST=GetLegendGraphic&LAYER=Monthly_Snow_Cover&PALETTE=rainbow', '11,100', 'monthly', TRUE);
+
+
+

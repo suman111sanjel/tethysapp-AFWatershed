@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html lang="en" class="ie ie7"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="ie ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+
+{% load tethys_gizmos staticfiles %}
+{% load tethys_gizmos %}
+{% load staticfiles %}
+{% csrf_token %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="generator" content="Django"/>
+
+    <title class="app-title">Watershed Characterization System for Afghanistan </title>
+
+    <link rel="shortcut icon" href="tethys_portal/images/favicon.jpg"/>
+    <link href="{% static 'AFWatershed/css/Version4bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="/static/tethys_gizmos/vendor/select2_4.0.2/css/select2.min.css" rel="stylesheet"/>
+    <link href="/static/tethys_portal/css/session_security_override.css" rel="stylesheet"/>
+
+    <link href="{% static 'AFWatershed/css/site.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/cssPlugin/sky.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/glyphicons.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/ol.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/owl.carousel.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/font-awesome.min.css' %}" rel="stylesheet"/>
+    {#    <link href="{% static 'AFWatershed/css/sliderStyles.css' %}" rel="stylesheet"/>#}
+    <link href="{% static 'AFWatershed/css/bootstrap-slider.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/jquery.toast.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/threddsDataserverMinified.css' %}" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel='stylesheet' type='text/css'>
+    <link href="{% static 'AFWatershed/css/layerUIWithSlider.css' %}" rel="stylesheet"/>
+    <link href="{% static 'AFWatershed/css/main.css' %}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="banner">
+    <h3 class="banner-heading app-title">Watershed Characterization System for Afghanistan </h3>
+    <div class="logos pull-right display-inline-flex">
+        {#        <div class="about-div glyphicon-about">#}
+        {#            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aboutModal">#}
+        {#                About#}
+        {#            </button>#}
+        {#        </div>#}
+        <div class="about-div glyphicon-about">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#aboutModal">
+                <i class="glyphicon glyphicon-info-sign"></i>
+            </button>
+        </div>
+        {#        <div class="about-div glyphicon-about">#}
+        {#            <i class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#aboutModal"></i>#}
+        {#        </div>#}
+        <img src="/static/AFWatershed/images/Afghanistan_logo.png"
+             style="height: 35px;margin-top: 5px;"/>
+    </div>
+</div>
+
+<div class="container-fluid main-container has-toolbar watershed-app">
+    <div class="row upper-row-height padding-half-right padding-half-left">
+        <!--LEFT-->
+        <div class="col-md-2  full-height padding-top14 padding-half-right padding-half-left">
+            <!--LEFT TOP-->
+            <div class="panel full-height">
+                <div class="panel-heading">
+                    <h4 class="panel-title padding-top-left">
+                        Map Controls
+                    </h4>
+                </div>
+                <div class="panel-body no-padding">
+                    <div class="map-control-section">
+                        <form>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="watershed-radio"
+                                           id="basin_radio_id"
+                                           checked value='basin'>
+                                    <label class="form-check-label" for="basin_radio_id">
+                                        Basin</label>
+                                </div>
+                                </label>
+                                <select class="form-control form-control-sm select_watershed_basin" id="select_Basin">
+                                    <option value="1">Amu Darya</option>
+                                    <option value="2">Harirud Murghab</option>
+                                    <option value="6">Helmand (Sistan)</option>
+                                    <option value="3">Kabul (Indus)</option>
+                                    {#                                    <option value="4">None Drainage Area</option>#}
+                                    <option value="5">Northern</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="watershed-radio"
+                                           id="watershed_radio_id" value='watershed'>
+                                    <label class="form-check-label" for="watershed_radio_id">
+                                        Watershed
+                                    </label>
+                                </div>
+                                <select class="form-control form-control-sm select_watershed_basin"
+                                        id="select_Watershed">
+                                    <option value="22">Ab i Rustaq</option>
+                                    <option value="40">Adraskan Rod</option>
+                                    <option value="2">Alingar</option>
+                                    <option value="16">Arghistan</option>
+                                    <option value="3">Bala Murghab</option>
+                                    <option value="27">Balkhab</option>
+                                    <option value="15">Chagay</option>
+                                    <option value="14">Chak wa Logar Rod</option>
+                                    <option value="37">Dasht i Margo</option>
+                                    <option value="41">Dasht i Naomid</option>
+                                    <option value="7">Dasht i Nawur</option>
+                                    <option value="28">Dasht i Shortepa</option>
+                                    <option value="34">Farah Rod</option>
+                                    <option value="13">Ghorband wa Panjsher</option>
+                                    <option value="29">Gomal</option>
+                                    <option value="19">Kabul</option>
+                                    <option value="23">Khanabad</option>
+                                    <option value="36">Khash Rod</option>
+                                    <option value="25">Khulm</option>
+                                    <option value="35">Khuspas Rod</option>
+                                    <option value="24">Kokcha</option>
+                                    <option value="20">Kunar</option>
+                                    <option value="26">Kunduz</option>
+                                    <option value="5">Kushk wa Kashan Rod</option>
+                                    <option value="33">Lower Arghandab</option>
+                                    <option value="12">Lower Hari Rod</option>
+                                    <option value="32">Lower Hilmand</option>
+                                    <option value="18">Middle Hilmand</option>
+                                    <option value="21">Panj</option>
+                                    <option value="10">Pishin Lora</option>
+                                    <option value="31">Registan</option>
+                                    <option value="38">Registan i Sedi</option>
+                                    <option value="6">Sardih wa Ghazni Rod</option>
+                                    <option value="1">Sari Pul</option>
+                                    <option value="30">Shamal</option>
+                                    <option value="4">Shirin Tagab</option>
+                                    <option value="39">Sistan Helmand</option>
+                                    <option value="17">Tarnak Rod</option>
+                                    <option value="9">Upper Arghandab</option>
+                                    <option value="11">Upper Hari Rod</option>
+                                    <option value="8">Upper Helmand</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layerListSection">
+                        <div class="accrodian-layer-title">Watershed Parameters</div>
+                        <div class="accordian-section-dynamic">
+                            <div class="accordion" id="layerAccordian-outer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8  full colpad padtop pull-div padding-half-left padding-half-right">
+            <div class="panel" style="height:100%;padding:3px;">
+                <div id="mapDiv" style="height:100%;position:relative; padding:0; margin:0; overflow:hidden;">
+                    <div class="card map-container" id="map-container" style="width:100%;height:100%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 full-height colpad padtop no-pull-div padding-half-right padding-half-left">
+            <div class="panel" style="height:100%;">
+                {#                        <div id="chart0" class="panel-body" style="height:100%;overflow:hidden;padding:0;"></div>#}
+                <div class="panel " style="height:100%">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" id="about-aoi">
+                            Quick Introduction
+                        </h4>
+                    </div>
+                    <div class="panel-body" id="about-aoi-body">
+                        <div class="infographics-outer">
+                            <ul class="infographics">
+                                {# <li class="infographics-data">#}
+                                {# <span class="data gutter-lt">#}
+                                {#      <i class="data-icon">#}
+                                {#      <img class="lakes"  src="/static/AFWatershed/images/qi/watershed.PNG">#}
+                                {#        </i>#}
+                                {#       <span class="data-item">#}
+                                {#      <span class="title7">Macro watershed</span>#}
+                                {#                                            <small class="font-sm"><ul class="no-style-list" id="qi_watershed">#}
+                                {#                                             Null#}
+                                {#                                            </ul></small>#}
+                                {#                                        </span>#}
+                                {#                                    </span>#}
+                                {#      </li>   #}
+                                {#                        <hr>                        #}
+                                {#                        <li class="infographics-data">#}
+                                {# <span class="data gutter-lt">#}
+                                {#                                        <i class="data-icon">#}
+                                {#            <img class="lakes"          src="/static/AFWatershed/images/qi/basin.png">#}
+                                {#                                        </i>#}
+                                {#                                        <span class="data-item">#}
+                                {#                                            <span class="title7">Major Basin</span>#}
+                                {#               <small class="font-sm"><ul           class="no-style-list" id="qi_basin">#}
+                                {#                                                Null#}
+                                {#                                            </ul></small>#}
+                                {#                                        </span>#}
+                                {#                                    </span>#}
+                                {#       </li>        #}
+                                {#   <hr>                        #}
+                                <li class="infographics-data">
+                                <span class="data gutter-lt">
+                                        <i class="data-icon">
+                                            <img class="lakes" src="/static/AFWatershed/images/qi/area.png">
+                                        </i>
+                                        <span class="data-item">
+                                            <span class="title7">Total area</span>
+                                            <small class="font-sm" id="qi_total_area">Null</small>
+                                        </span>
+                                    </span>
+                                </li>
+                                <hr>
+                                <li class="infographics-data">
+                                <span class="data gutter-lt">
+                                        <i class="data-icon">
+                                            <img class="lakes" src="/static/AFWatershed/images/qi/houses.svg">
+                                        </i>
+                                        <span class="data-item">
+                                            <span class="title7">No. of Villages</span>
+                                            <small class="font-sm" id="qi_num_of_village">Null</small>
+                                        </span>
+                                    </span>
+                                </li>
+                                <hr>
+                                <li class="infographics-data">
+                                    <span class="data gutter-lt">
+                                            <i class="data-icon">
+                                                <img class="lakes"
+                                                     src="/static/AFWatershed/images/qi/province_extent.png">
+                                            </i>
+                                            <span class="data-item">
+                                                <span class="title7">Associated province</span>
+                                                <small class="font-sm"><ul class="no-style-list"
+                                                                           id="qi_provence">
+                                                    Null
+                                                </ul></small>
+                                            </span>
+                                    </span>
+                                </li>
+                                <hr>
+                            </ul>
+                        </div>
+                        {#    <div class="print-and-export-map absolute-position">#}
+                        {#      <div class="export-map-align">#}
+                        {#   <button type="button" class="btn btn-primary">Export Map</button>                        #}
+                        {#                    </div>                    #}
+                        {#                    <div class="export-map-align">#}
+                        {#                        <button type="button" class="btn btn-primary">Generate Report</button>                        #}
+                        {#                    </div>                    #}
+                        {#                </div>                #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row lower-row-height padding-half-right padding-half-left">
+        <div class="col-md-12 colpad padtop padbottom padding-half-right padding-half-left">
+            <div class="panel " style="height:100%">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="GelogicalNavTab-tab" data-toggle="tab" href="#GelogicalNavTab"
+                           role="tab"
+                           aria-controls="GelogicalNavTab" aria-selected="true">Geological</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="HydrologicalNavTab-tab" data-toggle="tab" href="#HydrologicalNavTab"
+                           role="tab"
+                           aria-controls="HydrologicalNavTab" aria-selected="false">Hydrological</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="PolulationNavTab-tab" data-toggle="tab" href="#PolulationNavTab"
+                           role="tab"
+                           aria-controls="PolulationNavTab" aria-selected="false">Population</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="TopographicalNavTab-tab" data-toggle="tab" href="#TopographicalNavTab"
+                           role="tab"
+                           aria-controls="TopographicalNavTab" aria-selected="false">Topographical</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="Soil_ParametersNavTab-tab" data-toggle="tab"
+                           href="#Soil_ParametersNavTab"
+                           role="tab"
+                           aria-controls="Soil_ParametersNavTab" aria-selected="false">Soil parameters</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="LandCoverNavTab-tab" data-toggle="tab" href="#LandCoverNavTab"
+                           role="tab"
+                           aria-controls="LandCoverNavTab" aria-selected="false">Land cover and NDVI</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="ClimateNavTab-tab" data-toggle="tab" href="#ClimateNavTab" role="tab"
+                           aria-controls="ClimateNavTab" aria-selected="false">Climate</a>
+                    </li>
+                </ul>
+                <div class="tab-content tab-body-height full-width" id="myTabContent">
+                    <div class="tab-pane full-height full-width fade show active" id="GelogicalNavTab" role="tabpanel"
+                         aria-labelledby="GelogicalNavTab-tab">
+                        <div class="full-height full-width">
+
+                            <div id="Gelogical-owlcarousel" class="owl-carousel full-height">
+                                <!--TESTIMONIAL 1 -->
+                                <div class="item full-height">
+                                    <div id="gelogical__rocktype" class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 1 -->
+                                <!--TESTIMONIAL 2 -->
+                                <div class="item full-height">
+                                    <div id="gelogical__gelogical_template" class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 2 -->
+                                <!--TESTIMONIAL 3 -->
+                                <div class="item full-height">
+                                    <div id="Gelogical__Mineral_Types" class="full-width full-height"></div>
+
+                                </div>
+                                <!--END OF TESTIMONIAL 3 -->
+                                <!--TESTIMONIAL 4 -->
+                                <div class="item full-height">
+                                    <div id="Gelogical__Fault_Line" class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 4 -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane full-height full-width fade" id="HydrologicalNavTab" role="tabpanel"
+                         aria-labelledby="HydrologicalNavTab-tab">
+                        <div class="full-height full-width">
+                            <div id="Hydrological-owlcarousel" class="owl-carousel full-height">
+                                <!--TESTIMONIAL 1 -->
+                                <div class="item full-height">
+                                    <div id="Hydrological--Yearly-Well-Depth-Trend"
+                                         class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 1 -->
+                                <!--TESTIMONIAL 2 -->
+                                <div class="item full-height">
+                                    <div id="Hydrological__Ground_Water_Depth_Flow"
+                                         class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 2 -->
+                                <!--TESTIMONIAL 3 -->
+                                <div class="item full-height">
+                                    <div id="Hydrological--Flood-Risk" class="full-width full-height"></div>
+                                </div>
+                                <div class="item full-height">
+                                    <div id="Hydrological__DrainageDensity" class="full-width full-height"></div>
+                                </div>
+
+                                <div class="item full-height">
+                                    <div id="Hydrological__GroundWaterPotentialZone"
+                                         class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 3 -->
+                                <!--TESTIMONIAL 4 -->
+                                <div class="item full-height">
+                                    <div id="Hydrological--water-bodies" class="full-width full-height">
+                                        <div class="infographics-outer2 ul-col-2 full-height hydro-infographics">
+                                            <ul class="infographics full-height" id="infographics_elevation">
+                                                <li class="infographics-data half-height paddingZero">
+                                            <span class="data gutter-lt full-height">
+                                                    <i class="data-icon data-icon-hydrological">
+                                                        <img class="lakes"
+                                                             src="/static/AFWatershed/images/Lakes.png">
+                                                    </i>
+                                                    <span class="data-item">
+                                                        <span class="title7">Lakes</span>
+                                                        <small id="infographics_lake" class="font-sm">Null</small>
+                                                    </span>
+                                            </span>
+                                                </li>
+                                                <li class="infographics-data half-height paddingZero">
+                                            <span class="data gutter-lt full-height">
+                                                    <i class="data-icon data-icon-hydrological">
+                                                        <img class="lakes"
+                                                             src="/static/AFWatershed/images/marshland.jpg">
+                                                    </i>
+
+                                                    <span class="data-item">
+                                                        <span class="title7">Marshland</span>
+                                                        <small id="infographics_marshland"
+                                                               class="font-sm">Null</small>
+                                                    </span>
+                                            </span>
+                                                </li>
+                                                <li class="infographics-data half-height paddingZero">
+                                            <span class="data gutter-lt full-height">
+                                                    <i class="data-icon data-icon-hydrological">
+                                                        <img class="lakes"
+                                                             src="/static/AFWatershed/images/river1.jpg">
+                                                    </i>
+                                                    <span class="data-item">
+                                                        <span class="title7">River Major</span>
+                                                        <small id="infographics_majorRiver"
+                                                               class="font-sm">Null</small>
+                                                    </span>
+                                            </span>
+
+                                                </li>
+                                                <li class="infographics-data half-height paddingZero">
+                                            <span class="data gutter-lt full-height">
+                                                    <i class="data-icon data-icon-hydrological">
+                                                        <img class="lakes"
+                                                             src="/static/AFWatershed/images/river2.jpg">
+                                                    </i>
+
+                                                    <span class="data-item">
+                                                        <span class="title7">River Minor</span>
+                                                        <small id="infographics_minorRivers"
+                                                               class="font-sm">Null</small>
+                                                    </span>
+                                            </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--END OF TESTIMONIAL 4 -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane full-height full-width fade" id="PolulationNavTab" role="tabpanel"
+                         aria-labelledby="PolulationNavTab-tab">
+                        <div class="full-height full-width">
+                            <div id="Polulation-owlcarousel" class="owl-carousel full-height">
+                                <!--TESTIMONIAL 1 -->
+                                <div class="item full-height">
+                                    <div id="Population__PopulationDensity" class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 1 -->
+                                <!--TESTIMONIAL 2 -->
+                                <div class="item full-height">
+                                    <div id="Population__VillageDensity" class="full-width full-height"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 2 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane full-height full-width fade" id="TopographicalNavTab" role="tabpanel"
+                         aria-labelledby="TopographicalNavTab-tab">
+                        <div class="full-height full-width">
+                            <div id="Topographical-owlcarousel" class="owl-carousel full-height">
+                                <!--TESTIMONIAL 1 -->
+                                <div class="item full-height">
+                                    <div id="Topographical--slope" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 1 -->
+                                <!--TESTIMONIAL 2 -->
+                                <div class="item full-height">
+                                    <div id="Topographical--aspect" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 2 -->
+                                <!--TESTIMONIAL 3 -->
+                                <div class="item full-height">
+                                    <div id="Topographical__Elevation" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 3 -->
+                                <!--TESTIMONIAL 4 -->
+                                <div class="item full-height">
+                                    <div id="Topographical__PlanCurvature" class="full-height full-width"></div>
+                                </div>
+                                <div class="item full-height">
+                                    <div id="Topographical__ProfileCurvature" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 4 -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane full-height full-width fade" id="Soil_ParametersNavTab" role="tabpanel"
+                         aria-labelledby="Soil_ParametersNavTab-tab">
+                        <div class="full-height full-width">
+                            <div id="Soil_Parameters-owlcarousel" class="owl-carousel full-height">
+                                <!--TESTIMONIAL 1 -->
+                                <div class="item full-height">
+                                    <div id="SoilParameter__SoilDepth" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 1 -->
+                                <!--TESTIMONIAL 2 -->
+                                <div class="item full-height">
+                                    <div id="SoilParameter__SoilType" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 2 -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane full-height full-width fade" id="LandCoverNavTab" role="tabpanel"
+                         aria-labelledby="LandCoverNavTab-tab">
+                        <div class="full-height full-width">
+                            <div id="LandCover-owlcarousel" class="owl-carousel full-height">
+                                <!--TESTIMONIAL 1 -->
+                                <div class="item full-height">
+                                    <div id="LandCover__LandCover" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 1 -->
+
+                                <!--TESTIMONIAL 2 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Annual_NDVI_MODIS_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 2 -->
+                                <!--TESTIMONIAL 3 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Monthly_NDVI_MODIS_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 3 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane full-height full-width fade" id="ClimateNavTab" role="tabpanel"
+                         aria-labelledby="ClimateNavTab-tab">
+                        <div class="full-height full-width">
+                            <div id="Climate-owlcarousel" class="owl-carousel full-height">
+                                <!--TESTIMONIAL 1 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Annual_ET_MODIS_2009_2018" class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 1 -->
+                                <!--TESTIMONIAL 2 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Annual_Snow_Cover_MODIS_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 2 -->
+                                <!--TESTIMONIAL 3 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Annual_LST_MODIS_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 3 -->
+                                <!--TESTIMONIAL 4 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Annual_Percipitation_chirips_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 4 -->
+                                <!--TESTIMONIAL 5 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Monthly_LST_MODIS_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 5 -->
+                                <!--TESTIMONIAL 6 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Monthly_Precipitation_CHIRIPS_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 6 -->
+                                <!--TESTIMONIAL 7 -->
+                                <div class="item full-height">
+                                    <div id="TimeSeries_Monthly_Snow_Cover_MODIS_2009_2018"
+                                         class="full-height full-width"></div>
+                                </div>
+                                <!--END OF TESTIMONIAL 7 -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Watershed Characterization System for Afghanistan</h5>
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>-->
+            </div>
+            <div class="modal-body">
+                <div class="contributor">
+                    <img src="/static/AFWatershed/images/USAIDlogo.png"/>
+                    <img src="/static/AFWatershed/images/NASA_LOGO.png"
+                         style="height:50px;"/>
+                    <img src="/static/AFWatershed/images/icimod.png"
+                         style="height:58px;margin-top:10px;"/>
+                    <img src="/static/AFWatershed/images/Servir_HKH green.png"
+                         style="height:30px;"/>
+                </div>
+
+                <div>
+                    <p style="text-align:justify;font-size:12px;">
+                        The International Centre for Integrated Mountain Development (ICIMOD) developed the Geospatial
+                        portals for Watershed characterizations and Rangeland monitoring systems in Afghanistan with
+                        partnership of Natural Resources Management directorate (NRM - MAIL).
+                    </p>
+                    <p style="text-align:justify;font-size:12px;">
+                        The primary goals of watershed characterizations study are to provide topographical,
+                        hydrological, geological, climatically, land cover, population and soil related spatial and
+                        statistical information for Basins and Macro level watersheds and the output of this study will
+                        provide to support natural resources management and its related monitoring activities (e.g.
+                        river flows, draining densities, climatic satiations, agriculture production) with a planning
+                        tool in the form of georeferenced maps and statistics.
+                    </p>
+
+                    <p style="text-align:justify;font-size:12px">
+                        Watershed Characteristics also has many other valuable uses to government agencies, agricultural
+                        units, water management units and environmental groups, about improving or preserving our water
+                        resources and natural resources.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="MapPrint" tabindex="-1" role="dialog" aria-labelledby="MapPrintLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form id="map-print-form">
+                    <div class="form-group">
+                        <label for="map-title-for-print">Map Title</label>
+                        <input type="text" class="form-control form-control-sm" id="map-title-for-print"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter Map Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="map-print-filename">Output Filename</label>
+                        <input type="text" class="form-control form-control-sm" id="map-print-filename"
+                               placeholder="Enter Output Filename">
+                    </div>
+                    <div id="map-print-controls">
+                        <small class="muted-text">Adjust the map extent as per your requirement.</small>
+                        <div id="map-control-printing"></div>
+                    </div>
+                    <div class="legend-selection-div">
+                        <div class="accordion" id="mapPrintAccordian-outer">
+                            <div class="card">
+                                <div class="card-header" id="legend__item__heading">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                                data-toggle="collapse" data-target="#legend__item__collapse"
+                                                aria-expanded="true"
+                                                aria-controls="legend__item__collapse">Select Legends Items
+                                        </button>
+
+                                        <div class="form-check" style="float: right;">
+                                            <input class="form-check-input" type="checkbox"
+                                                   style="transform: translateY(-200%);"
+                                                   id="toggle-all-legend-items">
+                                        </div>
+                                    </h2>
+
+                                </div>
+
+                                <div class="collapse" id="legend__item__collapse"
+                                     aria-labelledby="legend__item__heading"
+                                     data-parent="#mapPrintAccordian-outer">
+                                    <div class="card-body" id="legend__item__body">
+                                        <div class="layer-legend-list">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="print-process-btn" form="map-print-form">Print
+                </button>
+                {#                <input type="submit" class="btn btn-primary" value="Print Map" name="map-print" id="print-process-btn" form="map-print-form">#}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal1" id="loading-modal" style="display: none;">
+    <div class="spinner">
+    </div>
+</div>
+
+
+{% block content_dependent_styles %}
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css"/>
+    <link rel="stylesheet" href="{% static 'AFWatershed/css/MonthPicker.css' %}"/>
+{% endblock %}
+
+<style>
+    .legend {
+        background-color: #FFFFFF;
+        padding: 5px;
+        border-radius: 5px;
+        opacity: 0.7;
+    }
+
+    .legend-symbol {
+        height: 10px;
+        width: 10px;
+    }
+
+    .legend-text {
+        transition-duration: 0.07s;
+        padding: 2px;
+        font-size: 10px;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        .top-row {
+            height: 55%;
+        }
+
+        .bot-row {
+            height: 45%;
+        }
+    }
+</style>
+
+{% block scripts %}
+
+    <script src="{% static 'AFWatershed/js/ForBootstrapjquery-3.5.1.slim.min.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/ForBootstrapPopper.min.js' %}"></script>
+    {#    <script src="{% static 'AFWatershed/js/jquery-ui.js' %}"></script>#}
+    <script src="{% static 'AFWatershed/js/Version4bootstrap.min.js' %}"></script>
+    {#        <script src="{% static 'AFWatershed/js/rangeslider.min.js' %}"></script>#}
+    <script src="{% static 'AFWatershed/js/bootstrap-slider.min.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/owl.carousel.min.js' %}"></script>
+
+    {#    <script src="/static/tethys_gizmos/vendor/select2_4.0.2/js/select2.full.min.js" type="text/javascript"></script>#}
+    <script src="{% static 'AFWatershed/js/ol.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/ol-ext.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/iso8601.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/timeDimensionThreddsDataServer.js' %}"></script>
+
+
+    {#    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>#}
+    {#    <script type="text/javascript" src="http://code.highcharts.com/highcharts-more.js"></script>#}
+    {#    <script type="text/javascript" src="http://code.highcharts.com/modules/exporting.js"></script>#}
+    {#    <script type="text/javascript" src="http://code.highcharts.com/modules/export-data.js"></script>#}
+
+    <script type="text/javascript" src="{% static 'AFWatershed/js/Highcharts/highcharts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'AFWatershed/js/Highcharts/highcharts-more.js' %}"></script>
+    <script type="text/javascript" src="{% static 'AFWatershed/js/Highcharts/exporting.js' %}"></script>
+    <script type="text/javascript" src="{% static 'AFWatershed/js/Highcharts/export-data.js' %}"></script>
+    <script type="text/javascript" src="{% static 'AFWatershed/js/jspdf.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'AFWatershed/js/jquery.toast.js' %}"></script>
+
+    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>#}
+    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>#}
+
+    <script>
+        var layerDetail ={{ layerlist|safe }};
+    </script>
+    <script src="{% static 'AFWatershed/js/Recent/recent_helpers.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/Recent/recent_utils.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/common_all.js' %}"></script>
+    <script src="{% static 'AFWatershed/js/Recent/recent_app.js' %}"></script>
+
+{% endblock %}
+
+<script>
+    var layerDetail ={{ layerlist|safe }};
+</script>
+
+{% csrf_token %}
+
+</body>
+
+</html>
